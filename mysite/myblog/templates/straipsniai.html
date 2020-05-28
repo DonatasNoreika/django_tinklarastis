@@ -11,10 +11,8 @@
             </div>
             <h2><a class="article-title">{{ straipsnis.pavadinimas }}</a></h2>
             <p class="article-content">{{ straipsnis.tekstas | safe }}</p>
+              <p class="card-text"><a href="{{ straipsnis.id }}">Skaityti daugiau</a></p>
               <a>Komentarų: {{ straipsnis.komentaru_skaicius }}:</a>
-              {% for komentaras in straipsnis.komentarai.all %}
-                   <li>{{ komentaras }}</li>
-              {% endfor %}
           </div>
         </article>
         <hr>

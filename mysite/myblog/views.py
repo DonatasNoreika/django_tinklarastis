@@ -13,3 +13,7 @@ class StraipsnisListView(generic.ListView):
     model = Straipsnis
     template_name = 'straipsniai.html'
     paginate_by = 5
+
+class StraipsnisDetailView(generic.DetailView):
+    model = Straipsnis
+    template_name = 'straipsnis.html'

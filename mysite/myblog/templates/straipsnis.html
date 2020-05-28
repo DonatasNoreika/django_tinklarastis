@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2">{{ straipsnis.autorius }}</a>
+          <small class="text-muted">{{ straipsnis.laikas|date:"Y-m-d, f" }}</small>
+        </div>
+        <h2><a class="article-title">{{ straipsnis.pavadinimas }}</a></h2>
+        <p class="article-content">{{ straipsnis.tekstas | safe }}</p>
+          <a>Komentarų: {{ straipsnis.komentaru_skaicius }}:</a>
+          {% for komentaras in straipsnis.komentarai.all %}
+               <li>{{ komentaras }}</li>
+          {% endfor %}
+      </div>
+    </article>
+    <hr>
+{% endblock %}
