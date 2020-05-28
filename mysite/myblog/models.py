@@ -22,8 +22,11 @@ class Straipsnis(models.Model):
 
 
 class Komentaras(models.Model):
-    straipsnis_id = models.ForeignKey(Straipsnis, on_delete=models.SET_NULL, null=True)
+    straipsnis_id = models.ForeignKey(Straipsnis, on_delete=models.SET_NULL, null=True, related_name='komentarai')
     vardas = models.CharField('Vardas', max_length=200)
     el_pastas = models.EmailField('El. paštas (nebūtina)', null=True, blank=True)
     laikas = models.DateTimeField('Sukurta: ', null=True, blank=True, default=datetime.now)
     komentaras = models.TextField("Komentaras")
+
+    def __str__(self):
+        return f"{self.vardas} {self.laikas} {self.komentaras}"
