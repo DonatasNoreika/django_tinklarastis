@@ -12,3 +12,4 @@ def index(request):
 class StraipsnisListView(generic.ListView):
     model = Straipsnis
     template_name = 'straipsniai.html'
+    paginate_by = 5
