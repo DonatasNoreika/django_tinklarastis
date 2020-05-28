@@ -16,7 +16,6 @@ class Straipsnis(models.Model):
     def komentaru_skaicius(self):
         return len(Komentaras.objects.filter(straipsnis_id=self.pk))
 
-
     def __str__(self):
         return f"{self.pavadinimas} {self.autorius} {self.laikas}"
 
