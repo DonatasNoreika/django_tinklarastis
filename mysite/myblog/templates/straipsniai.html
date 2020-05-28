@@ -12,7 +12,7 @@
             <h2><a class="article-title">{{ straipsnis.pavadinimas }}</a></h2>
             <p class="article-content">{{ straipsnis.tekstas | safe |truncatewords:"20"|linebreaks }}</p>
               <p class="card-text"><a href="{{ straipsnis.id }}">Skaityti daugiau</a></p>
-              <a>Komentarų: {{ straipsnis.komentaru_skaicius }}:</a>
+              <a>Komentarų: {{ straipsnis.komentaru_skaicius }}</a>
           </div>
         </article>
         <hr>

@@ -19,6 +19,10 @@ class Straipsnis(models.Model):
     def __str__(self):
         return f"{self.pavadinimas} {self.autorius} {self.laikas}"
 
+    class Meta:
+        verbose_name = "Straipsnis"
+        verbose_name_plural = "Straipsniai"
+
 
 class Komentaras(models.Model):
     straipsnis_id = models.ForeignKey(Straipsnis, on_delete=models.SET_NULL, null=True, related_name='komentarai')
@@ -28,4 +32,8 @@ class Komentaras(models.Model):
     komentaras = models.TextField("Komentaras")
 
     def __str__(self):
-        return f"{self.vardas} {self.laikas} {self.komentaras}"
+        return f"{self.vardas}, {self.laikas}: {self.komentaras}"
+
+    class Meta:
+        verbose_name = "Komentaras"
+        verbose_name_plural = "Komentarai"
