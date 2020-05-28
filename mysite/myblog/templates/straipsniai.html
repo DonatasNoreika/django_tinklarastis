@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if straipsnis_list %}
+    {% for straipsnis in straipsnis_list %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2">{{ straipsnis.autorius }}</a>
+              <small class="text-muted">{{ straipsnis.laikas|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title">{{ straipsnis.pavadinimas }}</a></h2>
+            <p class="article-content">{{ straipsnis.tekstas | safe }}</p>
+          </div>
+        </article>
+        <hr>
+    {% endfor %}
+  {% else %}
+    <p>Straipsnių nėra.</p>
+  {% endif %}
+{% endblock %}
