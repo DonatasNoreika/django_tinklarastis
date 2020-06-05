@@ -8,4 +8,5 @@ urlpatterns = [
     path('straipsniai/<int:pk>', views.StraipsnisDetailView.as_view(), name='straipsnis'),
     path('straipsniai/sukurti', views.StraipsnisCreateView.as_view(), name='straipsnis-sukurti'),
     path('straipsniai/<int:pk>/redaguoti', views.StraipsnisUpdateView.as_view(), name='straipsnis-redaguoti'),
+    path('straipsniai/<int:pk>/istrinti', views.StraipsnisDeleteView.as_view(), name='straipsnis-istrinti'),
 ]

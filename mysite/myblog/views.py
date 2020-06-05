@@ -48,3 +48,16 @@ class StraipsnisUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Upda
     def test_func(self):
         straipnis = self.get_object()
         return self.request.user == straipnis.autorius
+
+class StraipsnisDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = Straipsnis
+    success_url = "/myblog/straipsniai/"
+    template_name = 'straipsnis_delete.html'
+
+    def form_valid(self, form):
+        form.instance.reader = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        straipnis = self.get_object()
+        return self.request.user == straipnis.autorius

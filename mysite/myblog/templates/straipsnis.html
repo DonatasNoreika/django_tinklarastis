@@ -7,9 +7,12 @@
           <a class="mr-2">{{ straipsnis.autorius }}</a>
           <small class="text-muted">{{ straipsnis.laikas|date:"Y-m-d, f" }}</small>
         </div>
+       {% if object.autorius == user %}
         <div>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'straipsnis-redaguoti' object.id %}">Redaguoti</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'straipsnis-istrinti' object.id %}">Ištrinti</a>
         </div>
+          {% endif %}
         <h2><a class="article-title">{{ straipsnis.pavadinimas }}</a></h2>
         <p class="article-content">{{ straipsnis.tekstas | safe }}</p>
           <a>Komentarų: {{ straipsnis.komentaru_skaicius }}:</a>
