@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Straipsnis
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -15,8 +16,20 @@ class StraipsnisListView(generic.ListView):
     model = Straipsnis
     template_name = 'straipsniai.html'
     paginate_by = 5
+    ordering = ['-laikas']
 
 
 class StraipsnisDetailView(generic.DetailView):
     model = Straipsnis
     template_name = 'straipsnis.html'
+
+
+class StraipsnisCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Straipsnis
+    fields = ['pavadinimas', 'tekstas']
+    success_url = "/myblog/straipsniai/"
+    template_name = 'straipsnis_form.html'
+
+    def form_valid(self, form):
+        form.instance.autorius = self.request.user
+        return super().form_valid(form)
