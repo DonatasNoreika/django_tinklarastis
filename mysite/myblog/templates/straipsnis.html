@@ -21,6 +21,7 @@
             {% if komentaras.komentatorius == user %}
               <div>
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'komentaras-redaguoti' komentaras.id %}">Redaguoti</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'komentaras-istrinti' komentaras.id %}">Ištrinti</a>
               </div>
             {% endif %}
           {% endfor %}

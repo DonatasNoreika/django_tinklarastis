@@ -93,9 +93,15 @@ class KomentarasUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Upda
     success_url = "/myblog/straipsniai/"
     template_name = 'komentaras_form.html'
 
-    def form_valid(self, form):
-        # form.instance.komentatorius = self.request.user
-        return super().form_valid(form)
+    def test_func(self):
+        komentaras = self.get_object()
+        return self.request.user == komentaras.komentatorius
+
+
+class KomentarasDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = Komentaras
+    success_url = "/myblog/straipsniai/"
+    template_name = 'komentaras_delete.html'
 
     def test_func(self):
         komentaras = self.get_object()
