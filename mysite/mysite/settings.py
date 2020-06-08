@@ -108,7 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Vilnius'
+
 
 USE_I18N = True
 
@@ -122,9 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-TIME_ZONE = 'Europe/Vilnius'
-
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/myblog/straipsniai/'
+LOGOUT_REDIRECT_URL = '/myblog/straipsniai/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
