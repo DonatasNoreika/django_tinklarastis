@@ -18,6 +18,9 @@
           <a>Komentarų: {{ straipsnis.komentaru_skaicius }}:</a>
           {% for komentaras in straipsnis.komentarai.all %}
                <li>{{ komentaras }}</li>
+              <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'komentaras-redaguoti' komentaras.id %}">Redaguoti</a>
+              </div>
           {% endfor %}
         {% if user.is_authenticated %}
           <div class="fieldWrapper">

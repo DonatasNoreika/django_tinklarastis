@@ -1,6 +1,6 @@
 from django.shortcuts import render, reverse
 from django.views import generic
-from .models import Straipsnis
+from .models import Straipsnis, Komentaras
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import FormMixin
 from .forms import KomentarasForm
@@ -86,3 +86,17 @@ class StraipsnisDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.Dele
     def test_func(self):
         straipnis = self.get_object()
         return self.request.user == straipnis.autorius
+
+class KomentarasUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = Komentaras
+    fields = ['vardas', 'el_pastas', 'komentaras']
+    success_url = "/myblog/straipsniai/"
+    template_name = 'komentaras_form.html'
+
+    def form_valid(self, form):
+        # form.instance.komentatorius = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        komentaras = self.get_object()
+        return self.request.user == komentaras.komentatorius

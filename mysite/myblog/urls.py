@@ -9,4 +9,5 @@ urlpatterns = [
     path('straipsniai/sukurti', views.StraipsnisCreateView.as_view(), name='straipsnis-sukurti'),
     path('straipsniai/<int:pk>/redaguoti', views.StraipsnisUpdateView.as_view(), name='straipsnis-redaguoti'),
     path('straipsniai/<int:pk>/istrinti', views.StraipsnisDeleteView.as_view(), name='straipsnis-istrinti'),
+    path('/komentaras/<int:pk>/', views.KomentarasUpdateView.as_view(), name='komentaras-redaguoti'),
 ]
