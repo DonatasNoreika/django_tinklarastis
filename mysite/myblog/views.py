@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.views import generic
 from .models import Straipsnis
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic.edit import FormMixin
+from .forms import KomentarasForm
 
 # Create your views here.
 
@@ -19,9 +21,32 @@ class StraipsnisListView(generic.ListView):
     ordering = ['-laikas']
 
 
-class StraipsnisDetailView(generic.DetailView):
+class StraipsnisDetailView(FormMixin, generic.DetailView):
     model = Straipsnis
     template_name = 'straipsnis.html'
+    form_class = KomentarasForm
+
+    def get_success_url(self):
+        return reverse('straipsnis', kwargs={'pk': self.object.id})
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(StraipsnisDetailView, self).get_context_data(**kwargs)
+        context['form'] = KomentarasForm(initial={'straipsnis_id': self.object})
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        form.instance.straipsnis_id = self.object
+        form.instance.komentatorius = self.request.user
+        form.save()
+        return super(StraipsnisDetailView, self).form_valid(form)
 
 
 class StraipsnisCreateView(LoginRequiredMixin, generic.CreateView):

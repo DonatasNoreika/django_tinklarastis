@@ -13,7 +13,7 @@ class StraipsnisAdmin(admin.ModelAdmin):
     inlines = [KomentarasInline]
 
 class KomentarasAdmin(admin.ModelAdmin):
-    list_display = ('straipsnis_id', 'vardas', 'el_pastas', 'laikas', 'komentaras')
+    list_display = ('straipsnis_id', 'komentatorius', 'vardas', 'el_pastas', 'laikas', 'komentaras')
 
 admin.site.register(Straipsnis, StraipsnisAdmin)
 admin.site.register(Komentaras, KomentarasAdmin)

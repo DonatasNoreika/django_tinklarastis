@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
     <article class="media content-section">
       <div class="media-body">
@@ -19,6 +19,17 @@
           {% for komentaras in straipsnis.komentarai.all %}
                <li>{{ komentaras }}</li>
           {% endfor %}
+        {% if user.is_authenticated %}
+          <div class="fieldWrapper">
+            <hr><br/>
+            <h4>Palikite komentarą:</h4>
+            <form action="" method="post">
+                {% csrf_token %}
+              {{ form|crispy }}</br>
+              <button class="btn btn-outline-info" type="submit">Išsaugoti</button>
+            </form>
+          </div>
+        {% endif %}
       </div>
     </article>
     <hr>
