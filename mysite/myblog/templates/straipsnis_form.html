@@ -5,7 +5,9 @@
     <form method="POST">
         <script>
         tinymce.init({
-            selector: '#id_tekstas'
+            selector: '#id_tekstas',
+            plugins : 'advlist autolink link image lists charmap print preview code',
+            toolbar1: ' fullscreen preview bold italic underline | fontselect, fontsizeselect  | forecolor backcolor | alignleft alignright | aligncenter alignjustify | indent outdent | bullist numlist table | link image media | codesample | code |',
         });
         </script>
         {% csrf_token %}
