@@ -3,6 +3,11 @@
 {% block content %}
     <div class="content-section">
     <form method="POST">
+        <script>
+        tinymce.init({
+            selector: '#id_tekstas'
+        });
+        </script>
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Straipsnis</legend>
